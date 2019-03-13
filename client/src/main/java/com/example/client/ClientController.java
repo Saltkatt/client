@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,17 +27,18 @@ public class ClientController {
     public void run(){
 
         while(true){
+            System.out.println("Welcome to the Library! \nFeel free to look around.");
             mainMenu();
 
-            String userInput = sc.nextLine();
+            String choice = sc.nextLine();
 
-            switch(userInput) {
-                case "1": getAllBooks(); break;
-                case "2": getBookById(); break;
-                case "3": getBookByTitle(); break;
-                case "4": addBook(); break;
-                case "5": updateBook(); break;
-                case "6": deleteBook(); break;
+            switch(choice) {
+                case "1": addBook(); break;
+                case "2": deleteBook(); break;
+                case "3": getAllBooks(); break;
+                case "4": getBookById(); break;
+                case "5": getBookByTitle(); break;
+                case "6": updateBook(); break;
                 case "7": System.exit(0);
                 default:
                     System.out.println("Input is not recognised, please try again.");
