@@ -54,7 +54,7 @@ public class ClientController {
         for(Method m: methods){
             menuOptions.add(m.getName());
         }
-        Collections.sort(menuOptions); //getDeclaredMethods return them in random order
+        Collections.sort(menuOptions);
         menuOptions.add("exit library");
         int i = 1;
         for(String s: menuOptions){

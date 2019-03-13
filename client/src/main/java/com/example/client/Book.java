@@ -6,6 +6,7 @@ import lombok.NonNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -15,14 +16,14 @@ public class Book {
     private @Id @GeneratedValue Long bookId;
     private @NonNull String bookName;
     private @NonNull String description;
-    private LocalDateTime dateTime;
+    private LocalDate date;
 
     public Book() {
     }
 
-    public Book(@NonNull String bookName, @NonNull String description, LocalDateTime dateTime) {
+    public Book(@NonNull String bookName, @NonNull String description, LocalDate date) {
         this.bookName = bookName;
         this.description = description;
-        this.dateTime = dateTime;
+        this.date = date;
     }
 }
