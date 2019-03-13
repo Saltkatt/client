@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class ContactService {
 
     private RestTemplate restTemplate = new RestTemplate();
-    String project2Url = "http://localhost:8085"; //not correct
+    String project2Url = "http://localhost:8085/library"; //not correct
 
     public String getAllBooks(){
         return restTemplate.getForObject(project2Url + "/getBooks", String.class);
@@ -27,7 +27,7 @@ public class ContactService {
     public String getBookByTitle(String bookName){
         try{
             return restTemplate.getForObject(project2Url + "getBook/{bookName}", String.class);
-        }catch (HttpClientErrorException e) {
+        }catch (Exception e) {
             System.out.println("Book title: " + bookName + "\n This book title is not valid.");
             return "";
         }
