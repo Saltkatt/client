@@ -15,23 +15,23 @@ public class ContactService {
         return restTemplate.getForObject(project2Url + "/getBooks", String.class);
     }
 
-    public String getBookById(Long bookID){
+    public String getBookById(String bookId){
+
         try {
-            return restTemplate.getForObject(project2Url + "/getBook/{bookId}", String.class);
+            return restTemplate.getForObject(project2Url + "/getBook/" + bookId, String.class);
         }catch (HttpClientErrorException e){
-            System.out.println("Book ID: " + bookID + "\n This ID is not valid.");
+            System.out.println("Book ID: " + bookId + "\nThis ID is not valid.");
             return "";
         }
     }
 
     public String getBookByTitle(String bookName){
         try{
-            return restTemplate.getForObject(project2Url + "getBook/{bookName}", String.class);
-        }catch (Exception e) {
-            System.out.println("Book title: " + bookName + "\n This book title is not valid.");
+            return restTemplate.getForObject(project2Url + "/getBookTitle/"+ bookName, String.class);
+        }catch (HttpClientErrorException e) {
+            System.out.println("Book title: " + bookName + "\nThis book title is not valid.");
             return "";
         }
-
     }
 
     public void addBook(String bookName, String description){
@@ -41,38 +41,36 @@ public class ContactService {
 
         HttpEntity<Book> request = new HttpEntity<>(book);
         try{
-            restTemplate.postForObject(project2Url + "/addBook", request, Book.class);
+            restTemplate.postForObject(project2Url + "/addBook/", request, Book.class);
         }catch (Exception e){
             System.out.println("This book " + bookName + " cannot be added.");
         }
     }
 
-    public void deleteBook(Long bookId) {
+    public void deleteBook(String bookId) {
         try{
-            restTemplate.delete(project2Url + "/removeBook/{bookId}" + bookId);
+            restTemplate.delete(project2Url + "/removeBook/" + bookId);
         }catch(Exception e){
-            System.out.println("Book ID" + bookId + "\n could not be removed.");
+            System.out.println("Book ID: " + bookId + "\ncould not be removed.");
         }
 
     }
 
-    public void updateBook(Long bookId, String newBookName, String newDescription) {
+    public void updateBook(String bookId, String newBookName, String newDescription){
         String bookInRepo = getBookById(bookId);
-        if (bookInRepo.equals("")) {
-            return; //the right error message (getUserById) gets displayed if this check fails as well as returning
+        if(bookInRepo.equals("")){
+            return;
         }
-
         Book book = new Book();
         book.setBookName(newBookName);
         book.setDescription(newDescription);
 
         HttpEntity<Book> request = new HttpEntity<>(book);
-        try {
-            restTemplate.put(project2Url + "/updateBook/{bookName}" + newBookName, newDescription, request, Book.class);
-        } catch (Exception e) {
+        try{
+            restTemplate.put(project2Url + "/updateBook/" + bookId, request, Book.class);
+        }catch (Exception e){
             System.out.println("The book " + newBookName + " is already taken.");
         }
     }
-
 
 }

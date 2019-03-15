@@ -82,9 +82,9 @@ public class ClientController {
 
     public void getBookById(){
         System.out.println("Enter book ID: ");
-        Long bookID = sc.nextLong();
+        String bookId = sc.nextLine();
 
-        conService.getBookById(bookID);
+        System.out.println(conService.getBookById(bookId));
 
     }
 
@@ -92,7 +92,7 @@ public class ClientController {
         System.out.println("Enter book title: ");
         String bookName = sc.nextLine();
 
-        conService.getBookByTitle(bookName);
+        System.out.println(conService.getBookByTitle(bookName));
 
     }
 
@@ -108,9 +108,8 @@ public class ClientController {
     }
 
     public void updateBook(){
-
         System.out.println("To update book title and description first enter book ID: ");
-        Long bookId = sc.nextLong();
+        String bookId = sc.nextLine();
 
         System.out.println("Update book title: ");
         String newBookName = sc.nextLine();
@@ -119,12 +118,14 @@ public class ClientController {
         String newDescription = sc.nextLine();
 
         conService.updateBook(bookId, newBookName, newDescription);
+
     }
+
 
     public void deleteBook(){
 
         System.out.println("Enter the ID of the book you wish to remove: ");
-        Long bookId = sc.nextLong();
+        String bookId = sc.nextLine();
 
         conService.deleteBook(bookId);
     }
