@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 public class ContactService {
 
     private RestTemplate restTemplate = new RestTemplate();
-    //String libraryURL = "http://localhost:8085/library"; //not correct
+    //String libraryURL = "http://localhost:8085/library";
     String libraryURL = "https://library-service.herokuapp.com/library/";
 
 

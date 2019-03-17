@@ -6,8 +6,7 @@ import lombok.NonNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 
 @Data
 @Entity
@@ -21,9 +20,9 @@ public class Book {
     public Book() {
     }
 
-    public Book(@NonNull String bookName, @NonNull String description/*, LocalDate date*/) {
+    public Book(@NonNull String bookName, @NonNull String description) {
         this.bookName = bookName;
         this.description = description;
-   //     this.date = date;
+
     }
 }
