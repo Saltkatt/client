@@ -15,7 +15,7 @@ public class Book {
     private @Id @GeneratedValue Long bookId;
     private @NonNull String bookName;
     private @NonNull String description;
- //   private java.time.LocalDate date;
+ 
 
     public Book() {
     }
