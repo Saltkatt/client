@@ -9,16 +9,18 @@ import org.springframework.web.client.RestTemplate;
 public class ContactService {
 
     private RestTemplate restTemplate = new RestTemplate();
-    String project2Url = "http://localhost:8085/library"; //not correct
+    //String libraryURL = "http://localhost:8085/library"; //not correct
+    String libraryURL = "https://library-service.herokuapp.com/library/";
+
 
     public String getAllBooks(){
-        return restTemplate.getForObject(project2Url + "/getBooks", String.class);
+        return restTemplate.getForObject(libraryURL + "/getBooks", String.class);
     }
 
     public String getBookById(String bookId){
 
         try {
-            return restTemplate.getForObject(project2Url + "/getBook/" + bookId, String.class);
+            return restTemplate.getForObject(libraryURL + "/getBook/" + bookId, String.class);
         }catch (HttpClientErrorException e){
             System.out.println("Book ID: " + bookId + "\nThis ID is not valid.");
             return "";
@@ -27,7 +29,7 @@ public class ContactService {
 
     public String getBookByTitle(String bookName){
         try{
-            return restTemplate.getForObject(project2Url + "/getBookTitle/"+ bookName, String.class);
+            return restTemplate.getForObject(libraryURL + "/getBookTitle/"+ bookName, String.class);
         }catch (HttpClientErrorException e) {
             System.out.println("Book title: " + bookName + "\nThis book title is not valid.");
             return "";
@@ -41,7 +43,7 @@ public class ContactService {
 
         HttpEntity<Book> request = new HttpEntity<>(book);
         try{
-            restTemplate.postForObject(project2Url + "/addBook/", request, Book.class);
+            restTemplate.postForObject(libraryURL + "/addBook/", request, Book.class);
         }catch (Exception e){
             System.out.println("This book " + bookName + " cannot be added.");
         }
@@ -49,7 +51,7 @@ public class ContactService {
 
     public void deleteBook(String bookId) {
         try{
-            restTemplate.delete(project2Url + "/removeBook/" + bookId);
+            restTemplate.delete(libraryURL + "/removeBook/" + bookId);
         }catch(Exception e){
             System.out.println("Book ID: " + bookId + "\ncould not be removed.");
         }
@@ -67,7 +69,7 @@ public class ContactService {
 
         HttpEntity<Book> request = new HttpEntity<>(book);
         try{
-            restTemplate.put(project2Url + "/updateBook/" + bookId, request, Book.class);
+            restTemplate.put(libraryURL + "/updateBook/" + bookId, request, Book.class);
         }catch (Exception e){
             System.out.println("The book " + newBookName + " is already taken.");
         }
