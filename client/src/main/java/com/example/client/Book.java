@@ -15,7 +15,7 @@ public class Book {
     private @Id @GeneratedValue Long bookId;
     private @NonNull String bookName;
     private @NonNull String description;
- 
+
 
     public Book() {
     }

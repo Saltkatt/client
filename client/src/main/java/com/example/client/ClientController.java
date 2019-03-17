@@ -23,7 +23,6 @@ public class ClientController {
         sc = new Scanner(System.in);
     }
 
-
     public void run(){
 
         while(true){
@@ -120,7 +119,6 @@ public class ClientController {
         conService.updateBook(bookId, newBookName, newDescription);
 
     }
-
 
     public void deleteBook(){
 
